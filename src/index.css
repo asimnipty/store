@@ -1,13 +1,30 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-purple-700;
+  }
+
+  .btn-success {
+    @apply bg-green-500 text-white hover:bg-green-600;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 text-white hover:bg-red-600;
+  }
+
+  .btn-cart {
+    @apply bg-white/20 text-white hover:bg-white/30;
+  }
+
+  .container {
+    @apply max-w-6xl mx-auto px-4;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
