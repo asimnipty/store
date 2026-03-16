@@ -17,12 +17,24 @@ export function Header({ cartCount, onCartClick, onHomeClick, onProductsClick, o
     setIsMobileMenuOpen(false);
   };
 
+  const handleCartClick = () => {
+    onCartClick();
+    setIsMenuOpen(false);
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleHomeClick = () => {
+    onHomeClick();
+    setIsMenuOpen(false);
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header className="header">
       <div className="container header-wrapper">
         <button 
           className="header-logo"
-          onClick={onHomeClick}
+          onClick={handleHomeClick}
           title="Go to home"
         >
           🛒 Store App
@@ -80,7 +92,7 @@ export function Header({ cartCount, onCartClick, onHomeClick, onProductsClick, o
 
         <button 
           className="btn btn-cart"
-          onClick={onCartClick}
+          onClick={handleCartClick}
         >
           Cart 
           <span className="badge">{cartCount}</span>
