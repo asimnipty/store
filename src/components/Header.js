@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export function Header({ cartCount, onCartClick, onHomeClick, onCategoryClick }) {
+export function Header({ cartCount, onCartClick, onHomeClick, onProductsClick, onCategoryClick }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const categories = ['Electronics', 'Accessories'];
@@ -41,7 +41,7 @@ export function Header({ cartCount, onCartClick, onHomeClick, onCategoryClick })
         <nav className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
           <button 
             className="nav-link"
-            onClick={() => handleNavClick(onHomeClick)}
+            onClick={() => handleNavClick(onProductsClick)}
           >
             Products
           </button>

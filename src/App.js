@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
-import ProductCarousel from './components/ProductCarousel';
+import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import CartPage from './pages/CartPage';
 import Footer from './components/Footer';
@@ -8,7 +8,7 @@ import { useCart } from './hooks/useCart';
 import './styles.css';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('products');
+  const [currentPage, setCurrentPage] = useState('home');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const { cart, handleAddToCart, handleRemoveItem, handleClearCart } = useCart();
 
@@ -17,29 +17,38 @@ function App() {
     setCurrentPage('products');
   };
 
+  const handleProductsPageClick = () => {
+    setCurrentPage('products');
+    setSelectedCategory(null);
+  };
+
+  const handleHomeClick = () => {
+    setCurrentPage('home');
+    setSelectedCategory(null);
+  };
+
+  const handleCartClick = () => {
+    setCurrentPage(currentPage === 'cart' ? 'home' : 'cart');
+  };
+
   return (
     <div className="App">
       <Header 
         cartCount={cart.length}
-        onHomeClick={() => {
-          setCurrentPage('products');
-          setSelectedCategory(null);
-        }}
+        onHomeClick={handleHomeClick}
+        onProductsClick={handleProductsPageClick}
         onCategoryClick={handleCategoryClick}
-        onCartClick={() => setCurrentPage(currentPage === 'products' ? 'cart' : 'products')}
+        onCartClick={handleCartClick}
       />
 
-      <main style={{ padding: '2rem 0' }}>
-        {currentPage === 'products' ? (
-          <>
-            {!selectedCategory && (
-              <ProductCarousel onAddToCart={handleAddToCart} />
-            )}
-            <ProductsPage 
-              onAddToCart={handleAddToCart}
-              preSelectedCategory={selectedCategory}
-            />
-          </>
+      <main>
+        {currentPage === 'home' ? (
+          <HomePage onAddToCart={handleAddToCart} />
+        ) : currentPage === 'products' ? (
+          <ProductsPage 
+            onAddToCart={handleAddToCart}
+            preSelectedCategory={selectedCategory}
+          />
         ) : (
           <CartPage 
             items={cart}

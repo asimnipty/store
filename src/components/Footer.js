@@ -43,9 +43,9 @@ export function Footer() {
         <div className="footer-bottom">
           <p>&copy; {currentYear} Store App. All rights reserved.</p>
           <div className="social-links">
-            <a href="#facebook">Facebook</a>
-            <a href="#twitter">Twitter</a>
-            <a href="#instagram">Instagram</a>
+            <a href="#facebook" title="Facebook">f</a>
+            <a href="#twitter" title="Twitter">𝕏</a>
+            <a href="#instagram" title="Instagram">📷</a>
           </div>
         </div>
       </div>

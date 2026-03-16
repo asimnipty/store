@@ -14,6 +14,8 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f5f5f5;
   color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 /* App Container */
@@ -23,7 +25,7 @@ body {
 }
 
 main {
-  padding: 2rem 0;
+  padding: 0;
 }
 
 /* Header */
@@ -215,7 +217,7 @@ main {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 2rem 1.25rem;
 }
 
 /* Buttons */
@@ -291,7 +293,7 @@ main {
 .carousel-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 2rem 0;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
 .carousel-container {
@@ -684,7 +686,7 @@ main {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 3rem 0 1rem;
-  margin-top: 4rem;
+  margin-top: 0;
   box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -744,13 +746,24 @@ main {
 }
 
 .social-links a {
-  color: rgba(255, 255, 255, 0.8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
   text-decoration: none;
-  transition: color 0.3s ease;
+  font-size: 1.25rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
 }
 
 .social-links a:hover {
-  color: white;
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+  border-color: white;
 }
 
 /* Responsive */
@@ -848,7 +861,7 @@ main {
 
   .carousel-section {
     padding: 1.5rem 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
   }
 
   .carousel-container {
