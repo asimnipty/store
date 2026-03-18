@@ -1,56 +1,40 @@
 import React from 'react';
 
-export function Footer() {
-  const currentYear = new Date().getFullYear();
-
+const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer-content">
-          <div className="footer-section">
-            <h3>About Store</h3>
-            <p>Your trusted online shopping destination for quality products at great prices.</p>
-          </div>
-          
-          <div className="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="#products">Products</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#faq">FAQ</a></li>
-            </ul>
-          </div>
-          
-          <div className="footer-section">
-            <h3>Customer Service</h3>
-            <ul>
-              <li><a href="#shipping">Shipping Info</a></li>
-              <li><a href="#returns">Returns</a></li>
-              <li><a href="#privacy">Privacy Policy</a></li>
-              <li><a href="#terms">Terms & Conditions</a></li>
-            </ul>
-          </div>
-          
-          <div className="footer-section">
-            <h3>Contact Us</h3>
-            <p>Email: support@store.com</p>
-            <p>Phone: 1-800-STORE-01</p>
-            <p>Address: 123 Market Street, Commerce City, CC 12345</p>
-          </div>
+    <footer className="bg-slate-50 border-t border-slate-100 py-16 px-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="col-span-1 md:col-span-2">
+          <h3 className="text-lg font-bold text-slate-900 mb-4">Welcare Power Ltd</h3>
+          <p className="text-slate-500 text-sm max-w-sm leading-relaxed">
+            Leading the way in energy-efficient electrical solutions. Dedicated to sustainability, quality, and innovation.
+          </p>
         </div>
-        
-        <div className="footer-bottom">
-          <p>&copy; {currentYear} Store App. All rights reserved.</p>
-          <div className="social-links">
-            <a href="#facebook" title="Facebook" className="social-facebook">f</a>
-            <a href="#twitter" title="Twitter" className="social-twitter">𝕏</a>
-            <a href="#instagram" title="Instagram" className="social-instagram">◉</a>
-          </div>
+        <div>
+          <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Explore</h4>
+          <ul className="space-y-3 text-sm font-medium text-slate-600">
+            <li className="hover:text-blue-600 cursor-pointer">Products</li>
+            <li className="hover:text-blue-600 cursor-pointer">Mission & Vision</li>
+            <li className="hover:text-blue-600 cursor-pointer">Sustainability</li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Connect</h4>
+          <ul className="space-y-3 text-sm font-medium text-slate-600">
+            <li>info@welcarepowerltd.com</li>
+            <li>+880 1234 567 890</li>
+          </ul>
+        </div>
+      </div>
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-slate-200/50 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p className="text-[11px] font-medium text-slate-400">© 2026 Welcare Power Ltd. All rights reserved.</p>
+        <div className="flex gap-6 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+          <span className="hover:text-slate-900 cursor-pointer">Privacy Policy</span>
+          <span className="hover:text-slate-900 cursor-pointer">Terms of Service</span>
         </div>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
