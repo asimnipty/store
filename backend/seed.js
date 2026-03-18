@@ -55,10 +55,8 @@ const sampleProducts = [
 
 const seedDatabase = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/store_db', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    // FIXED: Removed useNewUrlParser and useUnifiedTopology
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/store_db');
 
     console.log('✓ Connected to MongoDB');
 

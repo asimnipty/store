@@ -4,10 +4,8 @@ const connectDB = async () => {
   try {
     const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/store_db';
     
-    await mongoose.connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    // Fixed: Removed useNewUrlParser and useUnifiedTopology
+    await mongoose.connect(mongoURI);
 
     console.log('✓ MongoDB connected successfully');
     return mongoose;
