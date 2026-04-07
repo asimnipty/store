@@ -31,17 +31,33 @@ After whitelisting, run the seed command again:
 npm run seed
 ```
 
-## Alternative: Use Local MongoDB
+## Alternative: Use Local MongoDB (Recommended for Development)
 
-If you prefer to use a local MongoDB instance:
+If you prefer to use a local MongoDB instance (bypasses network issues):
 
-1. Install MongoDB locally from [mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
-2. Start MongoDB service
-3. Update `.env` file:
+1. **Install MongoDB locally:**
+   - Download from [mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
+   - Or use package manager:
+     - Windows: `choco install mongodb-atlas-cli` or download installer
+     - macOS: `brew install mongodb/brew/mongodb-community`
+     - Linux: Follow [official installation guide](https://www.mongodb.com/docs/manual/administration/install-community/)
+
+2. **Start MongoDB service:**
+   - Windows: Start MongoDB service from Services or run `mongod`
+   - macOS: `brew services start mongodb/brew/mongodb-community`
+   - Linux: `sudo systemctl start mongod`
+
+3. **Update `.env` file:**
    ```
    MONGODB_URI=mongodb://localhost:27017/voltstore
    ```
-4. Run `npm run seed`
+
+4. **Run `npm run seed`**
+
+5. **Start the application:**
+   ```bash
+   npm run dev
+   ```
 
 ## Verify Connection
 
