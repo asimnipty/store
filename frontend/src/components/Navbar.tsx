@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Zap, Menu, X } from 'lucide-react';
+import { ShoppingCart, Menu, X } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
 import { useState } from 'react';
+import logo from '../assets/logo.png';
 
 export function Navbar() {
   const { items, toggleCart } = useCartStore();
@@ -13,17 +14,17 @@ export function Navbar() {
     <nav className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center gap-2">
-              <Zap className="h-8 w-8 text-blue-600" fill="currentColor" />
-              <span className="font-bold text-xl tracking-tight text-gray-900">VoltStore</span>
-            </Link>
-          </div>
+           <div className="flex items-center">
+             <Link to="/" className="flex items-center">
+               <img src={logo} alt="Welcare Power" className="h-12 w-auto" />
+             </Link>
+           </div>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Home</Link>
             <Link to="/shop" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Shop</Link>
+            <Link to="/admin" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Admin</Link>
             <button 
               onClick={toggleCart}
               className="relative p-2 text-gray-600 hover:text-gray-900 transition-colors"
@@ -77,6 +78,13 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Shop
+            </Link>
+            <Link 
+              to="/admin" 
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Admin
             </Link>
           </div>
         </div>

@@ -37,11 +37,10 @@ export function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-              Next-Gen Tech, <br />
-              <span className="text-blue-500">Delivered Today.</span>
+              Welcare – Your Trusted Partner in Saving Electricity
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-10">
-              Discover the latest in premium electronics. From ultra-fast laptops to immersive audio, upgrade your digital life with VoltStore.
+              Originality – Imagination - Aspiration
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
