@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Menu, X, LogIn, LogOut } from 'lucide-react';
+import { ShoppingCart, Menu, X, LogIn, LogOut, UserPlus, User } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
 import { useAuthStore } from '../store/useAuthStore';
+import { useCartDrawerStore } from '../store/useCartDrawerStore';
 import { useState } from 'react';
 import logo from '../assets/logo.png';
 
 export function Navbar() {
-  const { items, toggleCart } = useCartStore();
+  const { items } = useCartStore();
   const { isAuthenticated, user, logout } = useAuthStore();
+  const { openCart } = useCartDrawerStore();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const itemCount = items.reduce((total, item) => total + item.quantity, 0);
@@ -30,7 +32,7 @@ export function Navbar() {
               <Link to="/admin" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">Admin</Link>
             )}
             <button 
-              onClick={toggleCart}
+              onClick={openCart}
               className="relative p-2 text-gray-600 hover:text-gray-900 transition-colors"
             >
               <ShoppingCart className="h-6 w-6" />
@@ -43,6 +45,13 @@ export function Navbar() {
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <span className="text-sm text-gray-600">Welcome, {user?.username}</span>
+                <Link
+                  to="/profile"
+                  className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                >
+                  <User className="h-4 w-4" />
+                  Profile
+                </Link>
                 <button 
                   onClick={logout}
                   className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
@@ -52,20 +61,29 @@ export function Navbar() {
                 </button>
               </div>
             ) : (
-              <Link 
-                to="/login" 
-                className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
-              >
-                <LogIn className="h-4 w-4" />
-                Login
-              </Link>
+              <div className="flex items-center space-x-4">
+                <Link 
+                  to="/login" 
+                  className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                >
+                  <LogIn className="h-4 w-4" />
+                  Login
+                </Link>
+                <Link 
+                  to="/register" 
+                  className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                >
+                  <UserPlus className="h-4 w-4" />
+                  Register
+                </Link>
+              </div>
             )}
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-4">
             <button 
-              onClick={toggleCart}
+              onClick={openCart}
               className="relative p-2 text-gray-600 hover:text-gray-900 transition-colors"
             >
               <ShoppingCart className="h-6 w-6" />

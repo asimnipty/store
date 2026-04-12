@@ -11,7 +11,7 @@ const products = [
     description:
       "Ultra-thin, high-performance laptop with M-series equivalent chip, 32GB RAM, and 1TB SSD. Perfect for professionals and creators.",
     price: 1499.99,
-    category: "Laptops",
+    category: "Home Appliances",
     image:
       "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=800",
     features: [
@@ -27,7 +27,7 @@ const products = [
     description:
       "Industry-leading active noise cancellation with high-fidelity audio and all-day comfort.",
     price: 299.99,
-    category: "Audio",
+    category: "Electrical Accessories",
     image:
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800",
     features: [
@@ -43,7 +43,7 @@ const products = [
     description:
       "The ultimate smartphone experience with a pro-grade camera system and all-day battery.",
     price: 999.99,
-    category: "Phones",
+    category: "Electrical Accessories",
     image:
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=800",
     features: [
@@ -59,7 +59,7 @@ const products = [
     description:
       "Advanced health tracking, ECG, and seamless integration with your digital life.",
     price: 349.99,
-    category: "Wearables",
+    category: "Electrical Accessories",
     image:
       "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&q=80&w=800",
     features: [
@@ -75,7 +75,7 @@ const products = [
     description:
       "27-inch 4K UHD monitor with HDR400 and 99% sRGB color accuracy for stunning visuals.",
     price: 450.0,
-    category: "Accessories",
+    category: "Electrical Accessories",
     image:
       "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&q=80&w=800",
     features: ["27-inch 4K UHD", "HDR400", "USB-C Hub", "Ergonomic Stand"],
@@ -86,7 +86,7 @@ const products = [
     description:
       "Wireless mechanical keyboard with tactile switches and customizable RGB backlighting.",
     price: 129.99,
-    category: "Accessories",
+    category: "Electrical Accessories",
     image:
       "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&q=80&w=800",
     features: [

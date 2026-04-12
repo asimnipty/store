@@ -1,9 +1,15 @@
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { useCartStore } from '../store/useCartStore';
+import { useCartDrawerStore } from '../store/useCartDrawerStore';
+import { useAuthStore } from '../store/useAuthStore';
+import { useProductStore } from '../store/useProductStore';
 import { Link } from 'react-router-dom';
 
 export function CartDrawer() {
-  const { items, isCartOpen, toggleCart, updateQuantity, removeItem, getCartTotal } = useCartStore();
+  const { items, updateQuantity, removeItem, getTotal, getItemCount } = useCartStore();
+  const { isCartOpen, toggleCart } = useCartDrawerStore();
+  const { isAuthenticated } = useAuthStore();
+  const { products } = useProductStore();
 
   if (!isCartOpen) return null;
 
@@ -49,74 +55,93 @@ export function CartDrawer() {
             </div>
           ) : (
             <ul className="space-y-6">
-              {items.map((item) => (
-                <li key={item.id} className="flex gap-4">
-                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
-
-                  <div className="flex flex-1 flex-col">
-                    <div>
-                      <div className="flex justify-between text-base font-medium text-gray-900">
-                        <h3 className="line-clamp-1"><Link to={`/product/${item.id}`} onClick={toggleCart}>{item.name}</Link></h3>
-                        <p className="ml-4">${(item.price * item.quantity).toFixed(2)}</p>
-                      </div>
-                      <p className="mt-1 text-sm text-gray-500">{item.category}</p>
+              {items.map((item) => {
+                const product = products.find(p => p.id === item.productId);
+                return (
+                  <li key={item.productId} className="flex gap-4">
+                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
+                      <img
+                        src={product?.image || '/api/placeholder/96/96'}
+                        alt={product?.name || 'Product'}
+                        className="h-full w-full object-cover object-center"
+                      />
                     </div>
-                    <div className="flex flex-1 items-end justify-between text-sm">
-                      <div className="flex items-center border border-gray-200 rounded-lg">
-                        <button 
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="p-1 text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-l-lg"
-                        >
-                          <Minus className="h-4 w-4" />
-                        </button>
-                        <span className="px-3 font-medium text-gray-900">{item.quantity}</span>
-                        <button 
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="p-1 text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-r-lg"
-                        >
-                          <Plus className="h-4 w-4" />
-                        </button>
-                      </div>
 
-                      <button
-                        type="button"
-                        onClick={() => removeItem(item.id)}
-                        className="font-medium text-red-600 hover:text-red-500"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  </div>
-                </li>
-              ))}
+                    <div className="flex flex-1 flex-col">
+                      <div>
+                         <div className="flex justify-between text-base font-medium text-gray-900">
+                           <h3 className="line-clamp-1"><Link to={`/product/${item.productId}`} onClick={toggleCart}>{product?.name || 'Product'}</Link></h3>
+                           <p className="ml-4">${(item.price * item.quantity).toFixed(2)}</p>
+                         </div>
+                        <p className="mt-1 text-sm text-gray-500">{product?.category || 'Product'}</p>
+                      </div>
+                        <div className="flex flex-1 items-end justify-between text-sm">
+                          <div className="flex items-center border border-gray-200 rounded-lg">
+                             <button 
+                               onClick={() => updateQuantity(item.productId, item.quantity - 1)}
+                               className="p-1 text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-l-lg"
+                             >
+                               <Minus className="h-4 w-4" />
+                             </button>
+                             <span className="px-3 font-medium text-gray-900">{item.quantity}</span>
+                             <button 
+                               onClick={() => updateQuantity(item.productId, item.quantity + 1)}
+                               className="p-1 text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-r-lg"
+                             >
+                               <Plus className="h-4 w-4" />
+                             </button>
+                          </div>
+
+                           <button
+                             type="button"
+                             onClick={() => removeItem(item.productId)}
+                             className="font-medium text-red-600 hover:text-red-500"
+                           >
+                             Remove
+                           </button>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
             </ul>
           )}
         </div>
 
         {items.length > 0 && (
           <div className="border-t border-gray-100 p-6 bg-gray-50">
-            <div className="flex justify-between text-base font-medium text-gray-900 mb-4">
-              <p>Subtotal</p>
-              <p>${getCartTotal().toFixed(2)}</p>
-            </div>
+             <div className="flex justify-between text-base font-medium text-gray-900 mb-4">
+               <p>Subtotal ({getItemCount()} items)</p>
+               <p>${getTotal().toFixed(2)}</p>
+             </div>
             <p className="text-sm text-gray-500 mb-6">
               Shipping and taxes calculated at checkout.
             </p>
-            <button
-              className="w-full flex items-center justify-center rounded-xl border border-transparent bg-blue-600 px-6 py-4 text-base font-medium text-white shadow-sm hover:bg-blue-700 transition-colors"
-              onClick={() => {
-                alert('Checkout functionality would go here!');
-                toggleCart();
-              }}
-            >
-              Checkout
-            </button>
+             <div className="space-y-3">
+               {isAuthenticated ? (
+                 <Link
+                   to="/checkout"
+                   onClick={toggleCart}
+                   className="w-full flex items-center justify-center rounded-xl border border-transparent bg-blue-600 px-6 py-4 text-base font-medium text-white shadow-sm hover:bg-blue-700 transition-colors"
+                 >
+                   Proceed to Checkout
+                 </Link>
+               ) : (
+                 <Link
+                   to="/login"
+                   onClick={toggleCart}
+                   className="w-full flex items-center justify-center rounded-xl border border-blue-600 bg-white text-blue-600 px-6 py-4 text-base font-medium shadow-sm hover:bg-blue-50 transition-colors"
+                 >
+                   Sign in to Checkout
+                 </Link>
+               )}
+               <button
+                 className="w-full flex items-center justify-center rounded-xl border border-gray-300 bg-white px-6 py-4 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition-colors"
+                 onClick={toggleCart}
+               >
+                 Continue Shopping
+               </button>
+             </div>
           </div>
         )}
       </div>

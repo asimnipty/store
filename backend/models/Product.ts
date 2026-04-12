@@ -34,7 +34,7 @@ const ProductSchema: Schema = new Schema(
       type: String,
       required: [true, 'Please add a category'],
       enum: {
-        values: ['Laptops', 'Audio', 'Phones', 'Wearables', 'Accessories'],
+        values: ['Solar Products', 'LED Lighting', 'Power Solutions', 'Home Appliances', 'Electrical Accessories'],
         message: 'Please select a valid category',
       },
     },

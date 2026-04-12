@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import connectDB from "./config/db";
 import productRoutes from "./routes/productRoutes";
+import authRoutes from "./routes/authRoutes";
 
 // Load environment variables
 dotenv.config();
@@ -31,6 +32,9 @@ async function startServer() {
 
   // Mount product routes
   app.use("/api/products", productRoutes);
+  
+  // Mount auth routes
+  app.use("/api/auth", authRoutes);
 
   // ==========================================
   // VITE MIDDLEWARE (Frontend)
